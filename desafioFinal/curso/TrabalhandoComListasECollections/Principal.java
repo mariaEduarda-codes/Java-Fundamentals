@@ -37,11 +37,17 @@ public class Principal {
 
         } while (opcao != 0);
 
-        System.out.println("COMPRAS REALIZADAS: ");
+
         Collections.sort(compras);
-        for (Compra item : compras) {
-            System.out.println(item);
+        if (compras.isEmpty()) {
+            System.out.println("Nenhuma compra realizada.");
+        } else {
+            System.out.println("COMPRAS REALIZADAS: ");
+            for (Compra item : compras) {
+                System.out.println(item);
+            }
         }
+
         System.out.println(cartao);
     }
 }
