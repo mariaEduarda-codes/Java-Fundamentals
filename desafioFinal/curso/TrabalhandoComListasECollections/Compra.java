@@ -1,3 +1,5 @@
+package desafioFinal.curso.TrabalhandoComListasECollections;
+
 public class Compra implements Comparable<Compra>{
     private String descricao;
     private double valor;

@@ -1,3 +1,5 @@
+package desafioFinal.curso.TrabalhandoComListasECollections;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -29,7 +31,7 @@ public class Principal {
             }
 
             compras.add(compra);
-            System.out.println("Compra realizada!");
+            System.out.println("desafioFinal.curso.TrabalhandoComListasECollections.Compra realizada!");
             System.out.println("Digite 0 para sair ou 1 para continuar: ");
             opcao = sc.nextInt();
 
