@@ -34,9 +34,12 @@ public class Aula1 {
             TituloOmdb tituloOmdb = gson.fromJson(response.body(), TituloOmdb.class);
             Titulo converted = new Titulo(tituloOmdb);
             System.out.println(converted);
+        } catch (ErroDeConversaoDeAnoException e) {
+            System.out.println("Erro ao converter o ano de lançamento: " + e.getMessage());
         } catch (Exception e) {
             System.out.println("Erro ao fazer requisição: " + e.getMessage());
-        } finally {
+        }
+            finally {
             sc.close();
         }
     }
