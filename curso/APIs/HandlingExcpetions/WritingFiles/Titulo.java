@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class Titulo implements Comparable<Titulo>{
     private String nome;
     private int anoDeLancamento;
-    private int duracaoemMinutos;
+    private String duracaoemMinutos;
 
     public Titulo(String nome, int anoDeLancamento){
         this.nome = nome;
@@ -14,16 +14,8 @@ public class Titulo implements Comparable<Titulo>{
 
     public Titulo(TituloOmdb tituloOmdb){
         this.nome = tituloOmdb.title();
-        this.anoDeLancamento = Integer.valueOf(tituloOmdb.year());
-        this.duracaoemMinutos = Integer.valueOf(tituloOmdb.runtime().substring(0, 2));
-    }
-
-    public String getNome(){
-        return nome;
-    }
-
-    public int getAnoDeLancamento(){
-        return anoDeLancamento;
+        this.anoDeLancamento = Integer.parseInt(tituloOmdb.year());
+        this.duracaoemMinutos = tituloOmdb.runtime();
     }
 
     @Override

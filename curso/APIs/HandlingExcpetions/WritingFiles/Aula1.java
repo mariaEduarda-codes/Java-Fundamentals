@@ -18,19 +18,26 @@ public class Aula1 {
         System.out.println("Digite o nome do título para busca: ");
         String titulo = sc.nextLine();
 
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request;
+        HttpResponse<String> response;
+
         String chave = System.getenv("OMDB_CHAVE");
         String endereco = "https://www.omdbapi.com/?t=" + titulo + "&apikey=" + chave;
 
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(endereco)).build();
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-        System.out.println(response.body());
-
-        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();;
-        TituloOmdb tituloOmdb = gson.fromJson(response.body(), TituloOmdb.class);
-        Titulo converted = new Titulo(tituloOmdb);
-        System.out.println(converted);
-
+        try {
+            endereco = endereco.replace(' ', '+');
+            request = HttpRequest.newBuilder().uri(URI.create(endereco)).build();
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            //System.out.println(response.body());
+            Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
+            TituloOmdb tituloOmdb = gson.fromJson(response.body(), TituloOmdb.class);
+            Titulo converted = new Titulo(tituloOmdb);
+            System.out.println(converted);
+        } catch (Exception e) {
+            System.out.println("Erro ao fazer requisição: " + e.getMessage());
+        } finally {
+            sc.close();
+        }
     }
 }
